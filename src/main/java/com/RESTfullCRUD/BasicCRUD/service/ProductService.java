@@ -3,19 +3,23 @@ package com.RESTfullCRUD.BasicCRUD.service;
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
 
-    public Product addProduct(Product product);
 
-    public List<Product> fetchProducts();
+    /**
+     * @param product
+     * @return Product
+     */
+    public Product addProduct(Product product) throws Exception;
+
+    public List<Product> fetchProducts() throws Exception;
 
     public Product fetchProductById(Long productId);
 
-    public Void removeProductById(Long productId);
+    public void removeProductById(Long productId);
 
-    public Product fetchProductByName(String prodName);
+    public List<Product> fetchProductByName(String prodName);
 
     public Product updateProduct(Long productId, Product product);
 }
