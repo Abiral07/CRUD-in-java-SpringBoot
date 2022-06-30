@@ -16,12 +16,12 @@ import javax.validation.constraints.NotBlank;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long prodID;
+    private Long prodID;
 
     @NotBlank(message = "Please product name")
     private String prodName;
     private String prodType;
-    private double price;
+    private Double price;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name ="FK_vendorID", referencedColumnName = "vendorID")

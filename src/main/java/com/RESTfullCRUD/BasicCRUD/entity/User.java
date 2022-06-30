@@ -15,11 +15,13 @@ import javax.persistence.*;
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId;
     private String userName;
     private String password;
+    private Long citizenNo;
     private Integer contact;
     private String email;
+    private Role role;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name ="FK_addressID", referencedColumnName = "addID")
     private Address address;
@@ -29,4 +31,10 @@ public class User{
 //    private List<Address> address;
 //
 
+}
+
+enum Role{
+    user,
+    vendor,
+    admin
 }

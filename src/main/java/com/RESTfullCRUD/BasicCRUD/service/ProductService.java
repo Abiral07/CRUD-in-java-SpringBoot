@@ -8,18 +8,32 @@ public interface ProductService {
 
 
     /**
-     * @param product
+     * @param product Product object
      * @return Product
      */
     public Product addProduct(Product product) throws Exception;
 
-    public List<Product> fetchProducts() throws Exception;
+    /**
+     *
+     * @return List of Product
+     * @throws Exception e
+     */
+    List<Product> fetchProducts() throws Exception;
 
-    public Product fetchProductById(Long productId);
+    /**
+     *
+     * @param productId id
+     * @return Product
+     */
+    Product fetchProductById(Long productId);
 
     public void removeProductById(Long productId);
 
     public List<Product> fetchProductByName(String prodName);
 
     public Product updateProduct(Long productId, Product product);
+
+//    Object fetchProductsWithCondition(String vendorName, String city);
+
+    List<Object> fetchProductsWithConditions(String vendorName, String city);
 }

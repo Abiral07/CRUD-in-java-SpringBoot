@@ -64,4 +64,13 @@ public class ProductController {
     public Product updateProduct(@PathVariable("id") Long productId,@RequestBody Product product){
         return productService.updateProduct(productId, product);
     }
+
+//    @PostMapping("/getproductOf")
+//    public ResponseEntity<Object> fetchProductsWithCondition(@RequestParam("vendor") String vendorName, @RequestParam("city") String city) throws Exception {
+//        return new ResponseEntity<>(productService.fetchProductsWithCondition(vendorName, city));
+//    }
+    @GetMapping("/getproductOf")
+    public List<Object> fetchProductsWithCondition(@RequestParam("vendor") String vendorName, @RequestParam("city") String city) throws Exception {
+        return productService.fetchProductsWithConditions(vendorName, city);
+    }
 }

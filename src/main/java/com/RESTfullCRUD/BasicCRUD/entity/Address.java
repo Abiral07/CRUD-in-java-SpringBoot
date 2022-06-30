@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long addID;
+    private Long addID;
     private String country;
     private String province;
     private String city;
@@ -26,6 +26,6 @@ public class Address {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="vendorId")
+    @JoinColumn(name="vendorId", nullable = true)
     private Vendor vendor;
 }

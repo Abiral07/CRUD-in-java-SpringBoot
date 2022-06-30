@@ -18,12 +18,12 @@ import java.util.List;
 public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long vendorID;
+    private Long vendorID;
 
     private String vendorName;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_vendorId" , referencedColumnName = "vendorId")
+    @JoinColumn(name = "FK_vendorId" , referencedColumnName = "vendorID")
     private List<Address> address;
 //
 

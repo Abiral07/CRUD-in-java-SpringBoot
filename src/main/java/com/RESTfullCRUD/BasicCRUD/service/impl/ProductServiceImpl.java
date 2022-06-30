@@ -19,8 +19,7 @@ import java.util.Objects;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductReprository productReprository;
-//    @Autowired
-//    private VendorRepository vendorRepository;
+
     @Override
     public Product addProduct(Product product) throws Exception {
         return productReprository.save(product);
@@ -82,6 +81,16 @@ public class ProductServiceImpl implements ProductService {
 
         return productReprository.save(oldProd);
     }
+
+    @Override
+    public List<Object> fetchProductsWithConditions(String vendorName, String city) {
+        return productReprository.findWithVendorAndCity(vendorName,city);
+    }
+
+//    @Override
+//    public Object fetchProductsWithCondition(String vendorName, String city) {
+//        return productReprository.findWithVendorAndCity(vendorName,city);
+//    }
 
 
 }
