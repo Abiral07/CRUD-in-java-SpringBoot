@@ -1,5 +1,6 @@
 package com.RESTfullCRUD.BasicCRUD.entity;
 
+import com.RESTfullCRUD.BasicCRUD.config.AESCrypto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,18 +13,28 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User{
+//@Table(name = "user_Data")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String userName;
+
+//    @Convert(converter = AESCrypto.class)
     private String password;
-    private Long citizenNo;
-    private Integer contact;
+
+//    @Convert(converter = AESCrypto.class)
+    private String citizenNo;
+
+//    @Convert(converter = AESCrypto.class)
+    @Column(length =  5000)
+    private String contact;
+
     private String email;
     private Role role;
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name ="FK_addressID", referencedColumnName = "addID")
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "FK_addressID", referencedColumnName = "addID")
     private Address address;
 
 //    @OneToMany(cascade = CascadeType.MERGE)
@@ -33,7 +44,7 @@ public class User{
 
 }
 
-enum Role{
+enum Role {
     user,
     vendor,
     admin

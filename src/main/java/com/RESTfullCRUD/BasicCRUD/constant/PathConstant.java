@@ -9,6 +9,7 @@ public class PathConstant {
     public static final String REMOVE_PRODUCT = "/removeproduct";
     /* users */
     public static final String ADD_USER = "/registration";
+    public static final String LOGIN = "/login";
     public static final String GET_USER = "/getuser";
     public static final String GET_USERDTO = "/getuserDTO";
     public static final String UPDATE_USER = "/updateuser";

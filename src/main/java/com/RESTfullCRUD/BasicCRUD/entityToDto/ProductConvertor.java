@@ -19,7 +19,7 @@ public class ProductConvertor {
     }
 
     public List<ProductDto> entityToDto(List<Product> product){
-        return product.stream().map(x -> entityToDto(x)).collect(Collectors.toList());
+        return product.stream().map(this::entityToDto).collect(Collectors.toList());
     }
 
     public Product DtoToEntity(ProductDto dto){
@@ -31,6 +31,6 @@ public class ProductConvertor {
     }
 
     public List<Product> DtoToEntity(List<ProductDto> dto){
-        return dto.stream().map(x -> DtoToEntity(x)).collect(Collectors.toList());
+        return dto.stream().map(this::DtoToEntity).collect(Collectors.toList());
     }
 }

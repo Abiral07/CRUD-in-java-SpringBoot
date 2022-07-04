@@ -1,15 +1,14 @@
 package com.RESTfullCRUD.BasicCRUD.service.impl;
 
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
-import com.RESTfullCRUD.BasicCRUD.repository.ProductReprository;
-//import com.RESTfullCRUD.BasicCRUD.repository.VendorReprository;
+import com.RESTfullCRUD.BasicCRUD.repository.ProductRepository;
+//import com.RESTfullCRUD.BasicCRUD.repository.VendorRepository;
 import com.RESTfullCRUD.BasicCRUD.service.ProductService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,18 +17,18 @@ import java.util.Objects;
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    private ProductReprository productReprository;
+    private ProductRepository productRepository;
 
     @Override
     public Product addProduct(Product product) throws Exception {
-        return productReprository.save(product);
+        return productRepository.save(product);
     }
 
     @Override
     public List<Product> fetchProducts() throws Exception {
         try {
             List<Product> productList = new ArrayList<>();
-            productList =  productReprository.findAll();
+            productList =  productRepository.findAll();
             if (!productList.isEmpty()) {
                 return productList;
             } else {
@@ -45,23 +44,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product fetchProductById(Long productId) {
-        return productReprository.findById(productId).get();
+        return productRepository.findById(productId).get();
     }
 
     @Override
     public void removeProductById(Long productId) {
-        productReprository.deleteById(productId);
+        productRepository.deleteById(productId);
 //        return null;
     }
 
     @Override
     public List<Product> fetchProductByName(String prodName) {
-        return productReprository.findByProdName(prodName);
+        return productRepository.findByProdName(prodName);
     }
 
     @Override
     public Product updateProduct(Long productId, Product product) {
-        Product oldProd = productReprository.findById(productId).get();
+        Product oldProd = productRepository.findById(productId).get();
 
         if(Objects.nonNull(product.getProdName()) && !"".equalsIgnoreCase(product.getProdName())){
             oldProd.setProdName(product.getProdName());
@@ -79,17 +78,17 @@ public class ProductServiceImpl implements ProductService {
                 oldProd.setVendor(product.getVendor());
         }
 
-        return productReprository.save(oldProd);
+        return productRepository.save(oldProd);
     }
 
     @Override
     public List<Object> fetchProductsWithConditions(String vendorName, String city) {
-        return productReprository.findWithVendorAndCity(vendorName,city);
+        return productRepository.findWithVendorAndCity(vendorName,city);
     }
 
 //    @Override
 //    public Object fetchProductsWithCondition(String vendorName, String city) {
-//        return productReprository.findWithVendorAndCity(vendorName,city);
+//        return productRepository.findWithVendorAndCity(vendorName,city);
 //    }
 
 
