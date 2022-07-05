@@ -1,5 +1,6 @@
 package com.RESTfullCRUD.BasicCRUD.service;
 
+import com.RESTfullCRUD.BasicCRUD.requestDTO.FetchProductConditionsRequest;
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
 
 import java.util.List;
@@ -36,4 +37,6 @@ public interface ProductService {
 //    Object fetchProductsWithCondition(String vendorName, String city);
 
     List<Object> fetchProductsWithConditions(String vendorName, String city);
+
+    List<Object> fetchProductsWithConditions(FetchProductConditionsRequest fetchProductConditionsRequest);
 }

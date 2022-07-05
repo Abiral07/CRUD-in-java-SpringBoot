@@ -1,5 +1,6 @@
 package com.RESTfullCRUD.BasicCRUD.service.impl;
 
+import com.RESTfullCRUD.BasicCRUD.requestDTO.FetchProductConditionsRequest;
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
 import com.RESTfullCRUD.BasicCRUD.repository.ProductRepository;
 //import com.RESTfullCRUD.BasicCRUD.repository.VendorRepository;
@@ -83,7 +84,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Object> fetchProductsWithConditions(String vendorName, String city) {
-        return productRepository.findWithVendorAndCity(vendorName,city);
+        return null;
+    }
+
+    @Override
+    public List<Object> fetchProductsWithConditions(FetchProductConditionsRequest fetchProductConditionsRequest) {
+        return productRepository.findWithVendorAndCity(fetchProductConditionsRequest.getVendorName(),fetchProductConditionsRequest.getCity());
     }
 
 //    @Override
