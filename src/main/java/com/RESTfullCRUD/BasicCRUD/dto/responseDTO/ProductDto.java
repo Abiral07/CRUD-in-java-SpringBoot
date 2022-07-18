@@ -1,4 +1,4 @@
-package com.RESTfullCRUD.BasicCRUD.dto;
+package com.RESTfullCRUD.BasicCRUD.dto.responseDTO;
 
 import lombok.Data;
 

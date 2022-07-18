@@ -1,12 +1,16 @@
 package com.RESTfullCRUD.BasicCRUD.entity;
 
-import com.RESTfullCRUD.BasicCRUD.config.AESCrypto;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,6 +22,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+
+    @NotNull(message = "enter username")
+    @Column(unique = true, nullable = false)
     private String userName;
 
 //    @Convert(converter = AESCrypto.class)
@@ -31,21 +38,24 @@ public class User {
     private String contact;
 
     private String email;
-    private Role role;
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinTable(name = "User_Role", joinColumns = {@JoinColumn(name = "userId")}, inverseJoinColumns = {@JoinColumn(name = "roleId")})
+    @JoinColumn(name = "Role_id", referencedColumnName = "roleId")
+    private Set<Role> role;
+
+//    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "FK_addressID", referencedColumnName = "addID")
     private Address address;
 
-//    @OneToMany(cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "FK_vendorId" , referencedColumnName = "vendorId")
-//    private List<Address> address;
-//
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name ="FK_vendorID", referencedColumnName = "userID")
+    private List<Product> productList ;
 
-}
-
-enum Role {
-    user,
-    vendor,
-    admin
+    public void addRole(Role role) {
+        this.role.add(role);
+    }
 }

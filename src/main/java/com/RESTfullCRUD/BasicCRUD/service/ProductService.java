@@ -1,6 +1,8 @@
 package com.RESTfullCRUD.BasicCRUD.service;
 
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
+import com.RESTfullCRUD.BasicCRUD.dto.responseDTO.ProductAndVendorDTO;
+import com.RESTfullCRUD.BasicCRUD.exceptions.CustomException;
 
 import java.util.List;
 
@@ -11,8 +13,7 @@ public interface ProductService {
      * @param product Product object
      * @return Product
      */
-    public Product addProduct(Product product) throws Exception;
-
+    Product addProduct(Product product, String token) throws Exception;
     /**
      *
      * @return List of Product
@@ -27,13 +28,12 @@ public interface ProductService {
      */
     Product fetchProductById(Long productId);
 
-    public void removeProductById(Long productId);
+    void removeProductById(Long productId, String token) throws CustomException;
 
-    public List<Product> fetchProductByName(String prodName);
+    List<Product> fetchProductByName(String prodName);
 
-    public Product updateProduct(Long productId, Product product);
+    Product updateProduct(Long productId, Product product, String token) throws CustomException;
+    List<ProductAndVendorDTO> fetchProductsWithConditions(String vendorName, String city);
 
-//    Object fetchProductsWithCondition(String vendorName, String city);
-
-    List<Object> fetchProductsWithConditions(String vendorName, String city);
+//    List<Object> fetchProductsWithConditions(FetchProductConditionsRequest fetchProductConditionsRequest);
 }

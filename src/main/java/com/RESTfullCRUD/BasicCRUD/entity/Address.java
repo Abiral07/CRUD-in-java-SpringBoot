@@ -1,6 +1,5 @@
 package com.RESTfullCRUD.BasicCRUD.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,9 +22,4 @@ public class Address {
     private String city;
     private Short ward;
     private String type;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="vendorId", nullable = true)
-    private Vendor vendor;
 }

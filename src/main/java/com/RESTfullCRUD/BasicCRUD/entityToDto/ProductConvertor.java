@@ -1,6 +1,6 @@
 package com.RESTfullCRUD.BasicCRUD.entityToDto;
 
-import com.RESTfullCRUD.BasicCRUD.dto.ProductDto;
+import com.RESTfullCRUD.BasicCRUD.dto.responseDTO.ProductDto;
 import com.RESTfullCRUD.BasicCRUD.entity.Product;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public class ProductConvertor {
         dto.setProdID(product.getProdID());
         dto.setProdName(product.getProdName());
         dto.setPrice(product.getPrice());
-        dto.setVendorId(product.getVendor().getVendorID());
+        dto.setVendorId(product.getVendor().getUserId());
         return dto;
     }
 
